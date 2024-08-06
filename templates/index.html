@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <title>OVR Submission</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#">OVR Submission</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center">Occurrence Variance Report (OVR) Submission</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-warning" role="alert">
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form action="/submit" method="post" class="form-signin">
+            <div class="form-group">
+                <label for="reporter_name">Reporter Name:</label>
+                <input type="text" id="reporter_name" name="reporter_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="job_number">Job Number:</label>
+                <input type="text" id="job_number" name="job_number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="date_time">Date and Time:</label>
+                <input type="datetime-local" id="date_time" name="date_time" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="affected_person_name">Affected Person Name:</label>
+                <input type="text" id="affected_person_name" name="affected_person_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="affected_person_age">Affected Person Age:</label>
+                <input type="number" id="affected_person_age" name="affected_person_age" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="affected_person_sex">Affected Person Sex:</label>
+                <input type="text" id="affected_person_sex" name="affected_person_sex" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="affected_person_nationality">Affected Person Nationality:</label>
+                <input type="text" id="affected_person_nationality" name="affected_person_nationality" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="severity_code">Severity Code:</label>
+                <input type="text" id="severity_code" name="severity_code" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="actions_taken_initiating">Actions Taken by Initiating Department:</label>
+                <textarea id="actions_taken_initiating" name="actions_taken_initiating" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="actions_taken_responding">Actions Taken by Responding Department:</label>
+                <textarea id="actions_taken_responding" name="actions_taken_responding" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/login" class="btn btn-link">Login</a>
+            <a href="/register" class="btn btn-link">Register</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
